@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js">
+    </script>
+    <script>
+    $(document).ready(function(){
+      $("button").click(function(){
+        $("p").hide();
+      });
+    });
+    </script>
+    
+</head>
+<body>
+  <source src="assets/blue.mp3" type="audio/mpeg">
+    <div class="container">  
+        <div class="valentines">
+          <div class="envelope"></div>
+          <div class="front"></div>
+          <div class="card">
+          <div class="text">Happy</br> Valentine's</br>Kayy!</div>
+          <div class="heart"</div>
+          </div>
+          <div class="hearts">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+            <div class="four"></div>
+            <div class="five"></div>
+          </div>
+        </div>
+        </div>
+        <div class="shadow"></div>
+        </div>
+        <button id="nextBtn">Next</button>
+        <audio hidden autoplay loop>
+          <source src="assets/blue.mp3" type="audio/mpeg">
+        </audio>
+        
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="script.js"></script>
+    <script>
+        function setupMusic() {
+            const music = document.getElementById('backgroundMusic');
+            
+            const isMusicPlaying = localStorage.getItem('musicPlaying') === 'true';
+            const musicCurrentTime = localStorage.getItem('musicCurrentTime') || 0;
+    
+            if (isMusicPlaying) {
+                music.currentTime = parseFloat(musicCurrentTime);
+            }
+    
+            music.addEventListener('play', () => {
+                localStorage.setItem('musicPlaying', 'true');
+            });
+    
+            music.addEventListener('pause', () => {
+                localStorage.setItem('musicPlaying', 'false');
+            });
+    
+            setInterval(() => {
+                localStorage.setItem('musicCurrentTime', music.currentTime);
+            }, 1000);
+    
+            document.addEventListener('click', function startMusic() {
+                music.play().catch(error => {
+                    console.log('Autoplay prevented', error);
+                });
+                document.removeEventListener('click', startMusic);
+            });
+        }
+    
+            document.addEventListener('DOMContentLoaded', setupMusic);
+    </script>
+    
+    <audio id="backgroundMusic" loop>
+        <source src="assets/blue.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </script>
+        
+</body>
+</html>
